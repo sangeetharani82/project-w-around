@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="header">
+    <h2 th:text="${title}">Default title</h2>
+</div>
+<div class="rows">
+    <div class="column side" style="background-color:#ccc;">
+        <form method="post" style="max-width:500px;" th:object="${recipe}">
+            <div class="row">
+                <div class="col-25">
+                    <label th:for="recipeName">Title</label>
+                </div>
+                <div class="col-75">
+                    <input th:field="*{recipeName}" placeholder="Title" />
+                </div>
+                <span th:errors="*{recipeName}" class="error"></span>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label th:for="courseName">Course</label>
+                </div>
+                <div class="col-75">
+                    <select th:field="*{courseName}">
+                        <option th:each="recipeType : ${recipeTypes}"
+                                th:text="${recipeType.name}"
+                                th:value="${recipeType}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label th:for="category">Course</label>
+                </div>
+                <div class="col-75">
+                    <select th:field="*{category}">
+                        <option th:each="recipeCategory : ${recipeCategories}"
+                                th:text="${recipeCategory.name}"
+                                th:value="${recipeCategory}">
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label th:for="servingSize">Serving Size</label>
+                </div>
+                <div class="col-75">
+                    <input th:field="*{servingSize}" placeholder="Serving size.."/>
+                </div>
+                <span th:errors="*{servingSize}" class="error"></span>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label th:for="prepTime">Prep Time</label>
+                </div>
+                <div class="col-75">
+                    <input th:field="*{prepTime}" placeholder="Prep Time" />
+                </div>
+                <span th:errors="*{prepTime}" class="error"></span>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label th:for="cookTime">Cook Time</label>
+                </div>
+                <div class="col-75">
+                    <input th:field="*{cookTime}" placeholder="Cook Time"/>
+                </div>
+                <span th:errors="*{cookTime}" class="error"></span>
+
+            </div>
+            <!--<div class="row">
+                <div class="col-25">
+                    <label th:for="ingredients">Ingredients:</label>
+                </div>
+                <div class="col-75">
+                    <a th:href="@{'/recipe/choose'}">Choose the ingredients from the list</a>
+                </div>
+            </div>-->
+
+            <div class="row">
+                <div class="col-25">
+                    <label th:for="ingredient">Ingredients And Quantity</label>
+                </div>
+                <div class="col-75">
+                    <textarea th:field="*{ingredient}"  style="height:200px"></textarea>
+                </div>
+                <span th:errors="*{ingredient}" class="error"></span>
+
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label th:for="direction">Direction</label>
+                </div>
+                <div class="col-75">
+                    <textarea th:field="*{direction}" placeholder="Cooking method.." style="height:200px"></textarea>
+                </div>
+                <span th:errors="*{direction}" class="error"></span>
+
+            </div>
+            <div class="row">
+                <input type="submit" value="Create"/>
+            </div>
+        </form>
+    </div>
+
+    <!--<div class="column side" style="background-color:#aaa;">
+        <div class="content" th:each="i : ${ingredientsAndQuantity}">
+            <table class="table">
+                <tr>
+                    <td th:text="${i.ingredientName}"></td>
+                </tr>
+                <tr>
+                    <td th:text="${i.quantity}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>-->
+
+</div>
+<div class="footer">
+    <div class="bottomlink">
+        <a href="/recipe/add">Add Recipe</a></div>
+    <div class="bottomlink">
+        <a href="/ingredient/add">Add Ingredients</a></div>
+    <div class="bottomlink">
+        <a href="/recipe/remove">Delete Recipe(s)</a></div>
+</div>
+</body>
+</html>

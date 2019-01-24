@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+
+<nav th:replace="fragments :: navigation"></nav>
+<div class="container"></div>
+<div class="header">
+    <h3 th:text="${title}">Default title</h3>
+</div>
+<form method="post" style="max-width:680px;">
+    <div th:each="ingredient : ${recipeIngredients}" class="checkbox">
+        <div class="row">
+            <div class="col-25">
+                <input type="checkbox"/>
+                <label th:for="ingredientName" th:text="${ingredient.ingredientName}"></label>
+            </div>
+            <div class="col-75">
+                <div class="inputstyle">
+                    <input type="text" name="quantity" placeholder="Specify Quantity..."/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <input type="submit" value="Add to recipe"/>
+    </div>
+
+</form>
+<div class="footer">
+    <div class="bottomlink">
+        <a href="/recipe/add">Add Recipe</a></div>
+    <div class="bottomlink">
+        <a href="/ingredient/add">Add Ingredients</a></div>
+    <div class="bottomlink">
+        <a href="/recipe/remove">Delete Recipe(s)</a></div>
+</div>
+
+</body>
+</html>
