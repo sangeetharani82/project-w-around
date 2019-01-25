@@ -10,13 +10,16 @@
 
 
     <p th:unless="${recipes} and ${recipes.size()}">no recipes :-(</p>
-    <div th:each="recipe : ${recipes}">
-        <table class="table">
+    <table class="table">
+    <tr th:each="recipe : ${recipes}">
             <tr>
-                <ul><a th:href="@{'/recipe/single'}" th:text="${recipe.recipeName}"></a></ul>
+                <td><a th:href="@{'/recipe/single'}" th:text="${recipe.recipeName}"></a></td>
             </tr>
-        </table>
-    </div>
+        <tr>
+            <td><a th:href="@{'/recipe/edit'}">Edit</a></td>
+        </tr>
+    </tr>
+    </table>
 </div>
 <div class="footer">
     <div class="bottomlink">

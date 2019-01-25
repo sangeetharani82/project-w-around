@@ -71,6 +71,13 @@ public class RecipeController {
         return "redirect:";
     }
 
+    @RequestMapping(value="edit", method = RequestMethod.GET)
+    public String displayEditRecipeForm(Model model){
+
+
+        return "recipe/edit";
+    }
+
     //view-single-recipe
     @RequestMapping(value="single", method = RequestMethod.GET)
     public String viewSingleRecipe(Model model, int id){
