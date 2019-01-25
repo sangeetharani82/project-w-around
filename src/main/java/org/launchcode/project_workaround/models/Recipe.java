@@ -3,6 +3,7 @@ package org.launchcode.project_workaround.models;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,10 +17,12 @@ public class Recipe {
     @NotNull
     @Size(min=3, max=15)
     private String recipeName;
-    @NotNull
-    private RecipeType courseName;
-    @NotNull
-    private RecipeCategory category;
+
+    @ManyToOne
+    private Course courseName;
+
+    @ManyToOne
+    private Category categoryName;
 //    @NotNull
 //    private RecipeIngredient ingredient;
     @NotNull
@@ -92,21 +95,22 @@ public class Recipe {
         this.direction = direction;
     }
 
-    public RecipeType getCourseName() {
+    public Course getCourseName() {
         return courseName;
     }
 
-    public void setCourseName(RecipeType courseName) {
+    public void setCourseName(Course courseName) {
         this.courseName = courseName;
     }
 
-    public RecipeCategory getCategory() {
-        return category;
+    public Category getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory(RecipeCategory category) {
-        this.category = category;
+    public void setCategoryName(Category categoryName) {
+        this.categoryName = categoryName;
     }
+
 
 //    public RecipeIngredient getIngredient() {
 //        return ingredient;

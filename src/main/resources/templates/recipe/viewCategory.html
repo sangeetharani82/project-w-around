@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
+
 <body>
 <nav th:replace="fragments :: navigation"></nav>
 <div class="container">
     <div class="header">
         <h1 th:text="${title}">Default title</h1>
     </div>
-
-
-    <p th:unless="${recipes} and ${recipes.size()}">no recipes :-(</p>
     <table class="table">
-    <tr th:each="recipe : ${recipes}">
-            <tr>
-                <td><a th:href="@{'/recipe/single'}" th:text="${recipe.recipeName}"></a></td>
-            <td><a th:href="@{'/recipe/edit/'+${recipe.id}}">Edit</a></td>
-            </tr>
-    </tr>
+        <th><label th:for="categoryName"></label></th>
+        <tr th:each="category : ${categories}">
+            <td>
+                <a th:href="@{'/recipe/category/edit'}" th:text="${recipe.category.categoryName}"></a></td>
+        </tr>
     </table>
 </div>
 <div class="footer">
@@ -29,3 +26,4 @@
 </div>
 </body>
 </html>
+

@@ -9,16 +9,17 @@
     </div>
 
 
-    <p th:unless="${recipes} and ${recipes.size()}">no recipes :-(</p>
+    <p th:unless="${categories} and ${categories.size()}">no recipes :-(</p>
     <table class="table">
-    <tr th:each="recipe : ${recipes}">
-            <tr>
-                <td><a th:href="@{'/recipe/single'}" th:text="${recipe.recipeName}"></a></td>
-            <td><a th:href="@{'/recipe/edit/'+${recipe.id}}">Edit</a></td>
-            </tr>
-    </tr>
+        <tr th:each="category : ${categories}">
+        <tr>
+            <td th:id = "${category.id}" ><a th:href="@{'/recipe/category?id=' + ${category.id}}" th:text="${category.categoryName}"></a></td>
+        </tr>
+        </tr>
     </table>
+    <td><a th:href="@{'category/add'}">Add a Category</a></td>
 </div>
+
 <div class="footer">
     <div class="bottomlink">
         <a href="/recipe/add">Add Recipe</a></div>

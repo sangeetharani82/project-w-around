@@ -10,14 +10,11 @@
     </div>
     <table class="table">
         <th><label th:for="courseName"></label></th>
-        <tr th:each="recipeType : ${courses}">
+        <tr th:each="course : ${courses}">
             <td>
-                <a th:href="@{'/course/edit'}" th:text="${recipeType.name}"></a></td>
+                <a th:href="@{'/recipe/course/edit'}" th:text="${recipe.course.courseName}"></a></td>
         </tr>
     </table>
-    <div class="button">
-        <a href="/course/add">Add course</a>
-    </div>
 
 </div>
 <div class="footer">

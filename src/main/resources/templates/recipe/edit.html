@@ -6,7 +6,7 @@
 <nav th:replace="fragments :: navigation"></nav>
 
 <div class="header">
-    <h2 th:text="${title}">Default title</h2>
+    <h2 th:text="${title} + *{recipeName} +' '+${recipe.id}">Default title</h2>
 </div>
 <div class="rows">
     <div class="column side" style="background-color:#ccc;">
@@ -16,7 +16,7 @@
                     <label th:for="recipeName">Title</label>
                 </div>
                 <div class="col-75">
-                    <input th:field="*{recipeName}" placeholder="Title" />
+                    <input th:field="*{recipeName}" />
                 </div>
                 <span th:errors="*{recipeName}" class="error"></span>
             </div>
@@ -27,6 +27,8 @@
                 </div>
                 <div class="col-75">
                     <select name="courseId">
+                        <option th:value="*{course.courseName}"
+                                th:text="*{course.courseName"></option>
                         <option th:each="course : ${courses}"
                                 th:text="${course.courseName}"
                                 th:value="${course.id}">
@@ -40,6 +42,8 @@
                 </div>
                 <div class="col-75">
                     <select name="categoryId">
+                        <option th:value="*{category.categoryName}"
+                                th:text="*{category.categoryName}"></option>
                         <option th:each="category : ${categories}"
                                 th:text="${category.categoryName}"
                                 th:value="${category.id}">
@@ -53,7 +57,7 @@
                     <label th:for="servingSize">Serving Size</label>
                 </div>
                 <div class="col-75">
-                    <input th:field="*{servingSize}" placeholder="Serving size.."/>
+                    <input th:field="*{servingSize}"/>
                 </div>
                 <span th:errors="*{servingSize}" class="error"></span>
             </div>
@@ -62,7 +66,7 @@
                     <label th:for="prepTime">Prep Time</label>
                 </div>
                 <div class="col-75">
-                    <input th:field="*{prepTime}" placeholder="Prep Time" />
+                    <input th:field="*{prepTime}"/>
                 </div>
                 <span th:errors="*{prepTime}" class="error"></span>
             </div>
@@ -71,7 +75,7 @@
                     <label th:for="cookTime">Cook Time</label>
                 </div>
                 <div class="col-75">
-                    <input th:field="*{cookTime}" placeholder="Cook Time"/>
+                    <input th:field="*{cookTime}"/>
                 </div>
                 <span th:errors="*{cookTime}" class="error"></span>
 
@@ -100,7 +104,7 @@
                     <label th:for="direction">Direction</label>
                 </div>
                 <div class="col-75">
-                    <textarea th:field="*{direction}" placeholder="Cooking method.." style="height:200px"></textarea>
+                    <textarea th:field="*{direction}" style="height:200px"></textarea>
                 </div>
                 <span th:errors="*{direction}" class="error"></span>
 
