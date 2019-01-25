@@ -15,16 +15,15 @@ public class Recipe {
     private int id;
 
     @NotNull
-    @Size(min=3, max=15)
+    @Size(min = 3, max = 15)
     private String recipeName;
 
     @ManyToOne
-    private Course courseName;
+    private Course course;
 
     @ManyToOne
-    private Category categoryName;
-//    @NotNull
-//    private RecipeIngredient ingredient;
+    private Category category;
+
     @NotNull
     private int servingSize;
     @NotNull
@@ -34,7 +33,7 @@ public class Recipe {
     @NotNull
     private String ingredient;
     @NotNull
-    @Size(min=3, message = "Direction field should not be empty")
+    @Size(min = 3, message = "Direction field should not be empty")
     private String direction;
 
 
@@ -49,7 +48,8 @@ public class Recipe {
         this.direction = direction;
     }
 
-    public Recipe(){ }
+    public Recipe() {
+    }
 
     public int getId() {
         return id;
@@ -95,26 +95,21 @@ public class Recipe {
         this.direction = direction;
     }
 
-    public Course getCourseName() {
-        return courseName;
+    public Course getCourse() {
+        return course;
     }
 
-    public void setCourseName(Course courseName) {
-        this.courseName = courseName;
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
-    public Category getCategoryName() {
-        return categoryName;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryName(Category categoryName) {
-        this.categoryName = categoryName;
+    public void setCategory(Category category) {
+        this.category = category;
     }
-
-
-//    public RecipeIngredient getIngredient() {
-//        return ingredient;
-//    }
 
     public String getIngredient() {
         return ingredient;
@@ -123,8 +118,4 @@ public class Recipe {
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
     }
-//
-//    public void setIngredient(RecipeIngredient ingredient) {
-//        this.ingredient = ingredient;
-//    }
 }

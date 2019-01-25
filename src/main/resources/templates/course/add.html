@@ -8,16 +8,6 @@
 <div class="header">
     <h2 th:text="${title}">Default title</h2>
 </div>
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
-<body>
-
-<nav th:replace="fragments :: navigation"></nav>
-
-<div class="header">
-    <h2 th:text="${title}">Default title</h2>
-</div>
 <div class="rows">
     <div class="column side" style="background-color:#ccc;">
         <form method="post" style="max-width:500px;" th:object="${course}">
@@ -31,12 +21,11 @@
                 <span th:errors="*{courseName}" class="error"></span>
             </div>
             <div class="row">
-                <input type="submit" value="Add a Course" /></div>
+                <input type="submit" value="Create"/>
+            </div>
         </form>
     </div>
 </div>
-
-
 <div class="footer">
     <div class="bottomlink">
         <a href="/recipe/add">Add Recipe</a></div>

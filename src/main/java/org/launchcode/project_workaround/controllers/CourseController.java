@@ -1,5 +1,6 @@
-package org.launchcode.project_workaround.models.controllers;
+package org.launchcode.project_workaround.controllers;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.launchcode.project_workaround.models.Course;
 import org.launchcode.project_workaround.models.data.CourseDao;
 import org.launchcode.project_workaround.models.data.RecipeDao;
@@ -16,6 +17,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("course")
 public class CourseController {
+
     @Autowired
     private CourseDao courseDao;
 
@@ -24,23 +26,22 @@ public class CourseController {
 
     @RequestMapping(value="")
     public String index(Model model){
-        model.addAttribute("categories", courseDao.findAll());
         model.addAttribute("title", "Courses");
+        model.addAttribute("courses", courseDao.findAll());
         return "course/index";
     }
 
-    @RequestMapping(value = "add")
+    @RequestMapping(value="add", method = RequestMethod.GET)
     public String displayAddForm(Model model){
-        model.addAttribute("title", "Add Category");
-        model.addAttribute("category", new Course());
+        model.addAttribute("title", "Add Course");
+        model.addAttribute("course", new Course());
         return "course/add";
     }
 
     @RequestMapping(value="add", method = RequestMethod.POST)
-    public String processAddForm(Model model,
-                                 @ModelAttribute @Valid Course course, Errors errors){
+    public String processAddForm(Model model, @ModelAttribute @Valid Course course, Errors errors){
         if (errors.hasErrors()){
-            model.addAttribute("title", "Add Category");
+            model.addAttribute("title", "Add Course");
             return "course/add";
         }
         courseDao.save(course);

@@ -9,7 +9,8 @@
     </div>
 
 
-    <p th:unless="${categories} and ${categories.size()}">no recipes :-(</p>
+    <p th:unless="${categories} and ${categories.size()}">no categories :-(</p>
+
     <table class="table">
         <tr th:each="category : ${categories}">
         <tr>
@@ -17,8 +18,8 @@
         </tr>
         </tr>
     </table>
-    <td><a th:href="@{'category/add'}">Add a Category</a></td>
 </div>
+<h5><a th:href="@{'/category/add'}">Add a Category</a></h5>
 
 <div class="footer">
     <div class="bottomlink">

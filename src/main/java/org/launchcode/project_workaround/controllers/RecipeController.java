@@ -1,6 +1,5 @@
-package org.launchcode.project_workaround.models.controllers;
+package org.launchcode.project_workaround.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.launchcode.project_workaround.models.*;
 import org.launchcode.project_workaround.models.data.CategoryDao;
 import org.launchcode.project_workaround.models.data.CourseDao;
@@ -11,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.WebParam;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -59,8 +57,8 @@ public class RecipeController {
 
         Course cor = courseDao.findOne(courseId);
         Category cat = categoryDao.findOne(categoryId);
-        newRecipe.setCourseName(cor);
-        newRecipe.setCategoryName(cat);
+        newRecipe.setCourse(cor);
+        newRecipe.setCategory(cat);
         recipeDao.save(newRecipe);
         return "redirect:";
     }
@@ -106,35 +104,12 @@ public class RecipeController {
         edited.setDirection(direction);
 
         Course cor = courseDao.findOne(courseId);
-        edited.setCourseName(cor);
+        edited.setCourse(cor);
 
         Category cat = categoryDao.findOne(categoryId);
-        edited.setCategoryName(cat);
+        edited.setCategory(cat);
         recipeDao.save(edited);
         return "redirect:/recipe";
-    }
-
-
-    //view-single-recipe
-    @RequestMapping(value="single", method = RequestMethod.GET)
-    public String viewSingleRecipe(Model model, @RequestParam int id){
-        model.addAttribute("recipes", recipeDao.findOne(id));
-        return "recipe/singleRecipe";
-    }
-    //view all courses
-    @RequestMapping(value="allCourses", method = RequestMethod.GET)
-    public String displayAllCourse(Model model){
-        model.addAttribute("title", "List of Courses available");
-        model.addAttribute("courses", courseDao.findAll());
-        return "recipe/viewCourse";
-    }
-
-    //view all categories
-    @RequestMapping(value="allCategories", method = RequestMethod.GET)
-    public String displayAllCategory(Model model){
-        model.addAttribute("title", "List of Category available");
-        model.addAttribute("categories", categoryDao.findAll());
-        return "recipe/viewCategory";
     }
 
     //recipes in a course

@@ -9,7 +9,8 @@
     </div>
 
 
-    <p th:unless="${courses} and ${courses.size()}">no recipes :-(</p>
+    <p th:unless="${courses} and ${courses.size()}">no courses :-(</p>
+
     <table class="table">
         <tr th:each="course : ${courses}">
         <tr>
@@ -17,8 +18,9 @@
         </tr>
         </tr>
     </table>
-    <td><a th:href="@{'course/add'}">Add a Course</a></td>
 </div>
+<h5><a th:href="@{'/course/add'}">Add a Course</a></h5>
+
 <div class="footer">
     <div class="bottomlink">
         <a href="/recipe/add">Add Recipe</a></div>

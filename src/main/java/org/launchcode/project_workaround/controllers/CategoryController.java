@@ -1,6 +1,5 @@
-package org.launchcode.project_workaround.models.controllers;
+package org.launchcode.project_workaround.controllers;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.launchcode.project_workaround.models.Category;
 import org.launchcode.project_workaround.models.data.CategoryDao;
 import org.launchcode.project_workaround.models.data.RecipeDao;
@@ -31,7 +30,7 @@ public class CategoryController {
         return "category/index";
     }
 
-    @RequestMapping(value = "add")
+    @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddForm(Model model){
         model.addAttribute("title", "Add Category");
         model.addAttribute("category", new Category());
