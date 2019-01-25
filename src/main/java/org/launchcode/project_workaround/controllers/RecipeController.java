@@ -60,7 +60,18 @@ public class RecipeController {
         newRecipe.setCourse(cor);
         newRecipe.setCategory(cat);
         recipeDao.save(newRecipe);
-        return "redirect:";
+        return "redirect:single/"+newRecipe.getId();
+    }
+
+    //view single recipe
+    @RequestMapping(value="single/{id}", method = RequestMethod.GET)
+    public String singleRecipe(@PathVariable int id, Model model){
+        Recipe recipe = recipeDao.findOne(id);
+        model.addAttribute("title", recipe.getRecipeName());
+        model.addAttribute("course", recipe.getCourse());
+        model.addAttribute("category", recipe.getCategory());
+        model.addAttribute("recipe", recipe);
+        return "recipe/single";
     }
 
     //delete a recipe
@@ -121,7 +132,7 @@ public class RecipeController {
         model.addAttribute("title", "Recipes in Course "+ cor.getCourseName());
         return "recipe/index";
     }
-
+    //recipes in a category
     @RequestMapping(value = "category", method = RequestMethod.GET)
     public String category(Model model, @RequestParam int id){
         Category cat = categoryDao.findOne(id);

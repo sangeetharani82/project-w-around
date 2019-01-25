@@ -28,7 +28,7 @@
                 <div class="col-75">
                     <select name="courseId">
                         <option th:value="*{course.courseName}"
-                                th:text="*{course.courseName"></option>
+                                th:text="*{course.courseName}"></option>
                         <option th:each="course : ${courses}"
                                 th:text="${course.courseName}"
                                 th:value="${course.id}">

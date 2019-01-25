@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+<div class="container">
+    <div class="header">
+        <h1 th:text="${title}">Default title</h1>
+    </div>
+    <div th:each = "i : ${recipe}">
+        <table>
+            <tr>
+                <th>Title</th>
+                <td th:id="${i.id}"
+                    th:text="${i.recipeName}"></td>
+            </tr>
+            <tr>
+                <th>Course</th>
+                <td th:text="${course.courseName}"></td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td th:text="${category.categoryName}"></td>
+            </tr>
+            <tr>
+                <th>Serving Size</th>
+                <td th:text="${i.servingSize}"></td>
+            </tr>
+            <tr>
+                <th>Prep Time</th>
+                <td th:text="${i.prepTime}"></td>
+            </tr>
+            <tr>
+                <th>CookTime</th>
+                <td th:text="${i.cookTime}"></td>
+            </tr>
+            <tr>
+                <th>Ingredients</th>
+                <td th:text="${i.ingredient}"></td>
+            </tr>
+            <tr>
+                <th>Direction</th>
+                <td th:text="${i.direction}"></td>
+            </tr>
+        </table>
+
+    </div>
+
+</div>
+<div class="footer">
+    <div class="bottomlink">
+        <a href="/recipe/add">Add Recipe</a></div>
+    <div class="bottomlink">
+        <a href="/ingredient/add">Add Ingredients</a></div>
+    <div class="bottomlink">
+        <a href="/recipe/remove">Delete Recipe(s)</a></div>
+</div>
+</body>
+</html>
