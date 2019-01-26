@@ -5,7 +5,7 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
-<div class="container">
+<div class="content">
     <div class="header">
         <h2 th:text="${title}">Default title</h2>
     </div>
@@ -22,13 +22,9 @@
         </div>
     </form>
 </div>
-<div class="footer">
-    <div class="bottomlink">
-        <a href="/recipe/add">Add Recipe</a></div>
-    <div class="bottomlink">
-        <a href="/ingredient/add">Add Ingredients</a></div>
-    <div class="bottomlink">
-        <a href="/recipe/remove">Delete Recipe(s)</a></div>
+<div class="sidenav">
+    <a href="/recipe/add">Add Recipe</a>
+    <a href="/recipe/remove">Delete Recipe(s)</a>
 </div>
 </body>
 </html>

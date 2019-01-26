@@ -8,19 +8,18 @@
         <h1 th:text="${title}">Default title</h1>
     </div>
 
-    <h4><a th:href="@{'/category/add'}">Add a Category</a></h4>
-    <p th:unless="${categories} and ${categories.size()}">no categories :-(</p>
+    <h5><a th:href="@{'/ingredient/add'}">Add an Ingredient</a></h5>
+    <p th:unless="${ingredients} and ${ingredients.size()}">no courses :-(</p>
 
     <table class="table">
-        <tr th:each="category : ${categories}">
+        <tr th:each="ingredient : ${ingredients}">
         <tr>
-            <td th:id = "${category.id}" ><a th:href="@{'/recipe/category?id=' + ${category.id}}" th:text="${category.categoryName}"></a></td>
+            <td th:id = "${ingredient.id}" ><a th:href="@{'/ingredient/edit/' + ${ingredient.id}}"
+                                               th:text="${ingredient.ingredientName}"></a></td>
         </tr>
         </tr>
     </table>
-
 </div>
-
 <div class="sidenav">
     <a href="/recipe/add">Add Recipe</a>
     <a href="/recipe/remove">Delete Recipe(s)</a>

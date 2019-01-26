@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:fragment="head">
     <meta charset="UTF-8"/>
+<div class="title">
+    <title th:text="${title}">My Recipes</title></div>
 
-    <title th:text="${title}">My Recipes</title>
-
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -15,8 +15,9 @@
         <a class="active" href="/recipe">Home</a>
         <a href="/course">Courses</a>
         <a href="/category">Categories</a>
+        <a href="/ingredient">Ingredients</a>
         <!--<a href="/user">Users</a>
-        <a href="/ingredient/viewAll">All Ingredients</a>-->
+        -->
         <div class="righttopnav">
             <a href="/user/add">Sign-up</a>
             <a href="/user/login">User Login</a>
@@ -24,6 +25,7 @@
     </div>
 
 </nav>
+
 
 </body>
 </html>

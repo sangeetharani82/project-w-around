@@ -8,18 +8,17 @@
 <div class="header">
     <h2 th:text="${title}">Default title</h2>
 </div>
-
 <div class="rows">
     <div class="column side" style="background-color:#ccc;">
-        <form method="post" style="max-width:500px;" th:object="${category}">
+        <form method="post" style="max-width:500px;" th:object="${ingredient}">
             <div class="row">
                 <div class="col-25">
-                    <label th:for="categoryName">Title</label>
+                    <label th:for="ingredientName">Title</label>
                 </div>
                 <div class="col-75">
-                    <input th:field="*{categoryName}" />
+                    <input th:field="*{ingredientName}" />
                 </div>
-                <span th:errors="*{categoryName}" class="error"></span>
+                <span th:errors="*{ingredientName}" class="error"></span>
             </div>
             <div class="row">
                 <input type="submit" value="Create"/>
