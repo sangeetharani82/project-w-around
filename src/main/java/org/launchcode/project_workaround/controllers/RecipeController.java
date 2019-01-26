@@ -3,6 +3,7 @@ package org.launchcode.project_workaround.controllers;
 import org.launchcode.project_workaround.models.*;
 import org.launchcode.project_workaround.models.data.CategoryDao;
 import org.launchcode.project_workaround.models.data.CourseDao;
+import org.launchcode.project_workaround.models.data.IngredientDao;
 import org.launchcode.project_workaround.models.data.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ public class RecipeController {
 
     @Autowired
     CategoryDao categoryDao;
+
+    @Autowired
+    IngredientDao ingredientDao;
 
     // Request path: /recipe
     @RequestMapping(value="")
@@ -140,5 +144,13 @@ public class RecipeController {
         model.addAttribute("recipes", recipes);
         model.addAttribute("title", "Recipes in Category" + cat.getCategoryName());
         return "recipe/index";
+    }
+
+    @RequestMapping(value = "choose", method = RequestMethod.GET)
+    public String displayChooseForm(Model model){
+        model.addAttribute("title", "Choose the ingredeints and specify it's quantity");
+        model.addAttribute("ingredient", new Ingredient());
+        model.addAttribute("ingredients", ingredientDao.findAll());
+        return "recipe/choose";
     }
 }

@@ -36,7 +36,6 @@ public class Recipe {
     @Size(min = 3, message = "Direction field should not be empty")
     private String direction;
 
-
     public Recipe(String recipeName, int servingSize, String prepTime, String cookTime, String ingredient,
                   String direction) {
         this();

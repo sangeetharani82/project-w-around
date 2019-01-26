@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+<div class="content">
+    <div class="header">
+        <h1 th:text="${title}">Default title</h1>
+    </div>
+
+    <h5><a th:href="@{'/ingredient/add'}">Add an Ingredient</a></h5>
+    <p th:unless="${ingredients} and ${ingredients.size()}">Add ingredients..</p>
+    <form method="post" th:object="${ingredient}">
+    <table>
+        <div th:each="ingredient : ${ingredients}" class="checkbox">
+            <tr>
+            <td>
+                <input type="checkbox" name="ingredientIds" th:value="${ingredient.id}" th:id="${ingredient.id}"/>
+                <label th:for="${ingredient.id}" th:text="${ingredient.ingredientName}"></label>
+            </td>
+                <td><input type="text" placeholder="Quantity.." /></td>
+            </tr>
+        </div>
+    </table>
+        <div class="row">
+            <input type="submit" value="Add to the Recipe" />
+        </div>
+    </form>
+</div>
+<div class="sidenav">
+    <a href="/recipe/add">Add Recipe</a>
+    <a href="/recipe/remove">Delete Recipe(s)</a>
+</div>
+</body>
+</html>

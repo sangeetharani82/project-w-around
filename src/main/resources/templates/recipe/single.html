@@ -7,7 +7,7 @@
     <div class="header">
         <h1 th:text="${title}">Default title</h1>
     </div>
-    <div th:each = "i : ${recipe}">
+    <div class="single" th:each = "i : ${recipe}">
         <table>
             <tr>
                 <th>Title</th>
@@ -43,8 +43,12 @@
                 <td th:text="${i.direction}"></td>
             </tr>
         </table>
-
     </div>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
+    <a th:href="@{/recipe/rateAndComment/}">Rate and Comment here</a>
 
 </div>
 <div class="sidenav">
