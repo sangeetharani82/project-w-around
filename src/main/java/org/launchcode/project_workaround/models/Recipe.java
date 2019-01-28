@@ -1,9 +1,6 @@
 package org.launchcode.project_workaround.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -30,14 +27,16 @@ public class Recipe {
     private String prepTime;
     @NotNull
     private String cookTime;
+
     @NotNull
     private String ingredient;
+
     @NotNull
     @Size(min = 3, message = "Direction field should not be empty")
     private String direction;
 
-    public Recipe(String recipeName, int servingSize, String prepTime, String cookTime, String ingredient,
-                  String direction) {
+    public Recipe(String recipeName, int servingSize, String prepTime, String cookTime,
+                  String ingredient, String direction) {
         this();
         this.recipeName = recipeName;
         this.servingSize = servingSize;

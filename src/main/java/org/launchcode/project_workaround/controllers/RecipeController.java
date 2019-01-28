@@ -1,9 +1,10 @@
 package org.launchcode.project_workaround.controllers;
 
-import org.launchcode.project_workaround.models.*;
+import org.launchcode.project_workaround.models.Category;
+import org.launchcode.project_workaround.models.Course;
+import org.launchcode.project_workaround.models.Recipe;
 import org.launchcode.project_workaround.models.data.CategoryDao;
 import org.launchcode.project_workaround.models.data.CourseDao;
-import org.launchcode.project_workaround.models.data.IngredientDao;
 import org.launchcode.project_workaround.models.data.RecipeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("recipe")
+@RequestMapping(value = "recipe")
 public class RecipeController {
-
     @Autowired
     RecipeDao recipeDao;
 
@@ -27,12 +27,9 @@ public class RecipeController {
     @Autowired
     CategoryDao categoryDao;
 
-    @Autowired
-    IngredientDao ingredientDao;
-
     // Request path: /recipe
-    @RequestMapping(value="")
-    public String index(Model model){
+    @RequestMapping(value = "")
+    public String index(Model model) {
 
         model.addAttribute("recipes", recipeDao.findAll());
         model.addAttribute("title", "All recipes");
@@ -41,13 +38,14 @@ public class RecipeController {
 
     // add/create a recipe
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddRecipeForm(Model model){
+    public String displayAddRecipeForm(Model model) {
         model.addAttribute("title", "Add recipes");
         model.addAttribute(new Recipe());
         model.addAttribute("courses", courseDao.findAll());
         model.addAttribute("categories", categoryDao.findAll());
         return "recipe/add";
     }
+
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddRecipeForm(Model model, @ModelAttribute @Valid Recipe newRecipe,
                                        Errors errors, @RequestParam int courseId, @RequestParam int categoryId) {
@@ -58,7 +56,6 @@ public class RecipeController {
             model.addAttribute("categories", categoryDao.findAll());
             return "recipe/add";
         }
-
         Course cor = courseDao.findOne(courseId);
         Category cat = categoryDao.findOne(categoryId);
         newRecipe.setCourse(cor);
@@ -94,13 +91,13 @@ public class RecipeController {
         return "redirect:";
     }
 
+    //Edit a recipe
     @RequestMapping(value="edit/{recipeId}", method = RequestMethod.GET)
     public String displayEditRecipeForm(Model model, @PathVariable int recipeId){
         model.addAttribute(recipeDao.findOne(recipeId));
-        model.addAttribute("title", "Edit Recipe");
+        model.addAttribute("title", "Edit " + recipeDao.findOne(recipeId).getRecipeName());
         model.addAttribute("courses", courseDao.findAll());
         model.addAttribute("categories", categoryDao.findAll());
-        model.addAttribute("name", recipeDao.findOne(recipeId).getRecipeName());
         return "recipe/edit";
     }
 
@@ -108,7 +105,8 @@ public class RecipeController {
     public String processEditForm(@PathVariable int recipeId, @RequestParam String recipeName,
                                   @RequestParam int courseId, @RequestParam int categoryId,
                                   @RequestParam int servingSize, @RequestParam String prepTime,
-                                  @RequestParam String cookTime, @RequestParam String ingredient,
+                                  @RequestParam String cookTime,
+                                  @RequestParam String ingredient,
                                   @RequestParam String direction){
         Recipe edited = recipeDao.findOne(recipeId);
         edited.setRecipeName(recipeName);
@@ -118,11 +116,13 @@ public class RecipeController {
         edited.setIngredient(ingredient);
         edited.setDirection(direction);
 
+
         Course cor = courseDao.findOne(courseId);
         edited.setCourse(cor);
 
         Category cat = categoryDao.findOne(categoryId);
         edited.setCategory(cat);
+
         recipeDao.save(edited);
         return "redirect:/recipe";
     }
@@ -144,13 +144,5 @@ public class RecipeController {
         model.addAttribute("recipes", recipes);
         model.addAttribute("title", "Recipes in Category" + cat.getCategoryName());
         return "recipe/index";
-    }
-
-    @RequestMapping(value = "choose", method = RequestMethod.GET)
-    public String displayChooseForm(Model model){
-        model.addAttribute("title", "Choose the ingredeints and specify it's quantity");
-        model.addAttribute("ingredient", new Ingredient());
-        model.addAttribute("ingredients", ingredientDao.findAll());
-        return "recipe/choose";
     }
 }

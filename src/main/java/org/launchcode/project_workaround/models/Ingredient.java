@@ -16,9 +16,6 @@ public class Ingredient {
     @Size(min=3, max=15)
     private String ingredientName;
 
-    @OneToMany
-    @JoinColumn(name = "ingredient_id")
-    private List<Recipe> recipes = new ArrayList<>();
 
     public Ingredient(){}
 
@@ -28,10 +25,6 @@ public class Ingredient {
 
     public int getId() {
         return id;
-    }
-
-    public List<Recipe> getRecipes() {
-        return recipes;
     }
 
     public String getIngredientName() {
